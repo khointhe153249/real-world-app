@@ -5,6 +5,8 @@ import com.khoinguyen.realworldapp.model.TokenPayLoad;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -14,7 +16,8 @@ import java.util.function.Function;
 
 @Component
 public class JwtTokenUtil {
-    private String SECRET = "KHOI_NT4";
+    @Value("${JWT_SECRET_KEY}")
+    private String SECRET;
 
     public String generateToken(User user, long expiredDate) {
         Map<String, Object> claims = new HashMap<>();
